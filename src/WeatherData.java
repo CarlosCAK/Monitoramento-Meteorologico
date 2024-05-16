@@ -30,9 +30,9 @@ public class WeatherData {
     public void atualizarDados(){
         Random randomico = new Random();
 
-        this.pressao = randomico.nextDouble() * 200;
-        this.temperatura = randomico.nextDouble() * 45;
-        this.umidade = randomico.nextDouble() * 100;
+        this.pressao = Math.round(randomico.nextDouble() * 200);
+        this.temperatura = Math.round(randomico.nextDouble() * 45);
+        this.umidade = Math.round(randomico.nextDouble() * 100);
     }
 
 
