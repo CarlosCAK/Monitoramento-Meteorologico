@@ -4,7 +4,7 @@ public class StatisticsDisplay implements Display{
 
     @Override
     public void Atualizar(WeatherStation weatherStation) {
-        weatherStation.getWeatherData().atualizarDados();
+        weatherStation.getWeatherData().definirMedicao();
     }
 
     @Override
