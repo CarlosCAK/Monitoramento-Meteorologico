@@ -1,7 +1,10 @@
+import java.util.ArrayList;
+
 public class WeatherStation {
 
     private WeatherData weatherData;
     private int codigo;
+    private ArrayList <WeatherData> historico = new ArrayList<>();
 
     public WeatherData getWeatherData() {
         return this.weatherData;
@@ -19,7 +22,4 @@ public class WeatherStation {
         this.codigo = codigo;
     }
 
-    public void notificarDisplays(){
-        this.weatherData.atualizarDados();
-    }
 }

@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class CurrentConditionalsDisplay implements Display{
+public class StatisticsDisplay implements Display{
 
     @Override
     public void Atualizar(WeatherStation weatherStation) {
@@ -9,6 +9,6 @@ public class CurrentConditionalsDisplay implements Display{
 
     @Override
     public String exibirDados(WeatherStation weatherStation) {
-        return weatherStation.getWeatherData().toString();
+        return  weatherStation.getWeatherData().toString();
     }
 }

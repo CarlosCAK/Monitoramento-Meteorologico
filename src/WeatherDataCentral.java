@@ -1,17 +1,19 @@
 import java.util.ArrayList;
 
 public class WeatherDataCentral {
-    private ArrayList<WeatherStation> estacoes = new ArrayList<>();
+    private ArrayList<WeatherData> weatherData = new ArrayList<>();
 
-    public void addEstacoes(WeatherStation weatherStation){
-        estacoes.add(weatherStation);
+    public void addEstacoes(WeatherData weatherStation){
+        weatherData.add(weatherStation);
     }
 
-    public ArrayList<WeatherStation> getEstacoes() {
-        return this.estacoes;
+    public ArrayList<WeatherData> getEstacoes() {
+        return this.weatherData;
     }
-    public WeatherStation getEstacoes(int indice){
-        return this.estacoes.get(indice);
+    public WeatherData getEstacoes(int indice){
+        return this.weatherData.get(indice);
     }
+
+
 
 }

@@ -6,13 +6,13 @@ public class Main {
 
         WeatherData dadosEstacao = new WeatherData();
         WeatherStation estacao = new WeatherStation();
+        CurrentConditionalsDisplay condicoesAtuais = new CurrentConditionalsDisplay();
 
-        while(true) {
-            Thread.sleep(5000);
-            estacao.setWeatherData(dadosEstacao);
-            estacao.notificarDisplays();
-            System.out.println(estacao.getWeatherData().toString());
-        }
+        estacao.setWeatherData(dadosEstacao);
+
+
+            condicoesAtuais.Atualizar(estacao);
+        System.out.println(condicoesAtuais.exibirDados(estacao));
 
     }
 }
