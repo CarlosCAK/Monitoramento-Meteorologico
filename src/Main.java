@@ -12,21 +12,17 @@ public class Main {
     static CurrentConditionalsDisplay condicoesAtuais = new CurrentConditionalsDisplay();
     public static void main(String[] args) throws InterruptedException {
 
+        StatisticsDisplay displayEstatistica = new StatisticsDisplay();
 
-        while (true){
-            System.out.println("Digite a opção desejada\n"+
-                               "1- Cadastrar estação\n"+
-                               "2- Informações gerais de uma estação");
+        WeatherStation w1 = new WeatherStation();
 
-            switch (sc.nextInt()){
-                case 1 :
-                    cadastrarEstacao();
-                    break;
-                case 2:
-                    telaExibicaoInformacoesTotais();
-                    break;
-            }
-        }
+        displayEstatistica.Atualizar(w1);
+
+        displayEstatistica.addDisplayWeatherStation(w1);
+
+        System.out.println(w1.getDisplay(0).getWeatherData().toString());
+
+
 
     }
     public static void cadastrarEstacao(){

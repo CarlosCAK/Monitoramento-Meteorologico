@@ -5,8 +5,15 @@ public class WeatherStation {
     private WeatherData weatherData = new WeatherData();
     private int codigo;
     private String nome;
-    private ArrayList <WeatherData> historico = new ArrayList<>();
+    private ArrayList <Display> displays = new ArrayList<>();
 
+
+    public void addDisplay(Display display){
+        this.displays.add(display);
+    }
+    public Display getDisplay(int indice){
+        return this.displays.get(indice);
+    }
 
     public String getNome() {
         return this.nome;
