@@ -9,9 +9,10 @@ public class StatisticsDisplay implements Display{
     }
 
     @Override
-    public void Atualizar(WeatherStation weatherStation) {
+    public void atualizar(WeatherStation weatherStation) {
         weatherStation.getWeatherData().definirMedicao();
         this.dadosDisplay = weatherStation.getWeatherData();
+        weatherStation.addDisplay(this);
     }
 
     public String exibirDados() {

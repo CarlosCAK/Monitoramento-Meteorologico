@@ -5,7 +5,7 @@ public class CurrentConditionalsDisplay implements Display{
 
 
     @Override
-    public void Atualizar(WeatherStation weatherStation) {
+    public void atualizar(WeatherStation weatherStation) {
         calcInformacoesAdicionais(weatherStation);
         weatherStation.addDisplay(this);
     }

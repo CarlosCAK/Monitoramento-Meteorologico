@@ -54,17 +54,18 @@ public class Main {
             StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
             CurrentConditionalsDisplay currentConditionalsDisplay = new CurrentConditionalsDisplay();
 
-            statisticsDisplay.Atualizar(mapEstacoes.get(opcao));
-            currentConditionalsDisplay.Atualizar(mapEstacoes.get(opcao));
+            statisticsDisplay.atualizar(mapEstacoes.get(opcao));
+            currentConditionalsDisplay.atualizar(mapEstacoes.get(opcao));
 
             TimeUnit.SECONDS.sleep(1);
 
-            for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 1; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++){
+            for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 2; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++){
                 if(mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("StatisticsDisplay")){
-                    System.out.println(((StatisticsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getWeatherData().toString());
+                    System.out.println(((StatisticsDisplay)mapEstacoes.get(opcao).getDisplay(i)).exibirDados()+ "\n");
                 }
                 else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")){
-                    System.out.println(((CurrentConditionalsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais());
+                    System.out.println("MEDIA GERAL");
+                    System.out.println(((CurrentConditionalsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
                 }
             }
 
