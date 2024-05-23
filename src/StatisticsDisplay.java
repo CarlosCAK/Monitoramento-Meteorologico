@@ -4,8 +4,6 @@ public class StatisticsDisplay implements Display{
     private WeatherData dadosDisplay;
 
 
-
-    @Override
     public WeatherData getWeatherData() {
         return this.dadosDisplay;
     }
@@ -16,9 +14,8 @@ public class StatisticsDisplay implements Display{
         this.dadosDisplay = weatherStation.getWeatherData();
     }
 
-    @Override
-    public String exibirDados(WeatherStation weatherStation) {
-        return  weatherStation.getWeatherData().toString();
+    public String exibirDados() {
+        return  this.dadosDisplay.toString();
     }
 
     @Override

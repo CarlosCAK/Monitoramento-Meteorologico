@@ -5,14 +5,21 @@ public class WeatherStation {
     private WeatherData weatherData = new WeatherData();
     private int codigo;
     private String nome;
-    private ArrayList <Display> displays = new ArrayList<>();
+    private ArrayList <Display> telas = new ArrayList<>();
 
 
     public void addDisplay(Display display){
-        this.displays.add(display);
+        this.telas.add(display);
     }
     public Display getDisplay(int indice){
-        return this.displays.get(indice);
+        return this.telas.get(indice);
+    }
+
+    public ArrayList<Display> getDisplays() {
+        return this.telas;
+    }
+    public int getTamanhoListaTelas(){
+        return this.telas.size();
     }
 
     public String getNome() {

@@ -9,21 +9,26 @@ public class Main {
 
     static HashMap<Integer,WeatherStation> mapEstacoes = new HashMap<>();
     static Scanner sc = new Scanner(System.in);
-    static CurrentConditionalsDisplay condicoesAtuais = new CurrentConditionalsDisplay();
     public static void main(String[] args) throws InterruptedException {
+        int opcao;
 
-        StatisticsDisplay displayEstatistica = new StatisticsDisplay();
+        do {
+            System.out.println("Digite o que deseja realizar" +
+                    "\n1- Cadastrar Estacao" +
+                    "\n2- Visualizar as telas de uma estação por 1 minuto");
 
-        WeatherStation w1 = new WeatherStation();
+            opcao = sc.nextInt();
 
-        displayEstatistica.Atualizar(w1);
+            switch (opcao){
+                case 1:
+                    cadastrarEstacao();
+                    break;
+                case 2:
+                    telaExibicaoInformacoesTotais();
+                    break;
+            }
 
-        displayEstatistica.addDisplayWeatherStation(w1);
-
-        System.out.println(w1.getDisplay(0).getWeatherData().toString());
-
-
-
+        }while(opcao != 0);
     }
     public static void cadastrarEstacao(){
         WeatherStation e1 = new WeatherStation();
@@ -44,10 +49,27 @@ public class Main {
         System.out.println("Digite o código da estação que deseja exibir as informações");
         opcao = sc.nextInt();
 
+
         while (true){
-            TimeUnit.SECONDS.sleep(5);
-            mapEstacoes.get(opcao).getWeatherData().definirMedicao();
-            System.out.println(condicoesAtuais.exibirDados(mapEstacoes.get(opcao)));
+            StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
+            CurrentConditionalsDisplay currentConditionalsDisplay = new CurrentConditionalsDisplay();
+
+            statisticsDisplay.Atualizar(mapEstacoes.get(opcao));
+            currentConditionalsDisplay.Atualizar(mapEstacoes.get(opcao));
+
+            TimeUnit.SECONDS.sleep(1);
+
+            for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 1; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++){
+                if(mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("StatisticsDisplay")){
+                    System.out.println(((StatisticsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getWeatherData().toString());
+                }
+                else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")){
+                    System.out.println(((CurrentConditionalsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais());
+                }
+            }
+
+
+
         }
 
     }

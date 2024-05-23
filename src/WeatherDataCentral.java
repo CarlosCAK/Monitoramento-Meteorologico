@@ -10,6 +10,7 @@ public class WeatherDataCentral {
     public ArrayList<WeatherData> getEstacoes() {
         return this.weatherData;
     }
+
     public WeatherData getEstacoes(int indice){
         return this.weatherData.get(indice);
     }
