@@ -61,17 +61,14 @@ public class Main {
 
             TimeUnit.SECONDS.sleep(1);
 
-            for (int i = 0; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++){
+            for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 2; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++){
                 if(mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("StatisticsDisplay")){
                     System.out.println(((StatisticsDisplay)mapEstacoes.get(opcao).getDisplay(i)).exibirDados()+ "\n");
                 }
-                /**  else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")){
-                 System.out.println("MEDIA GERAL");
-                 System.out.println(((CurrentConditionalsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
-                 }
-                 * 
-                  */
-
+                else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")){
+                    System.out.println("MEDIA GERAL");
+                    System.out.println(((CurrentConditionalsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
+                }
             }
 
 

@@ -35,8 +35,6 @@ public class CurrentConditionalsDisplay implements Display{
             }
         }
 
-
-
         mediaTemperatura = somaTemperatura / ( (weatherStation.getTamanhoListaTelas() + 1 ) /2 );
         mediaUmidade = somaUmidade /    ( (weatherStation.getTamanhoListaTelas() + 1 ) /2 );
         mediaPressao = somaPressao / ( (weatherStation.getTamanhoListaTelas() + 1 ) /2 );
