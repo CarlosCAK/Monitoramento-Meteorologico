@@ -80,7 +80,7 @@ public class Main {
                         System.out.println(((CurrentConditionalsDisplay) mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
                     }
                 }
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.SECONDS.sleep(5);
             }
     }
     public static void historico(){
