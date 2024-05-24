@@ -16,7 +16,8 @@ public class Main {
         do {
             System.out.println("Digite o que deseja realizar" +
                     "\n1- Cadastrar Estacao" +
-                    "\n2- Visualizar as telas de uma estação por 1 minuto");
+                    "\n2- Visualizar as telas de uma estação por 1 minuto"+
+                    "\n3- Histórico de uma estação");
 
             opcao = sc.nextInt();
 
@@ -26,6 +27,9 @@ public class Main {
                     break;
                 case 2:
                     telaExibicaoInformacoesTotais();
+                    break;
+                case 3:
+                    historico();
                     break;
             }
 
@@ -37,8 +41,9 @@ public class Main {
         int codEstacao;
 
         sc.nextLine();
-        System.out.println("Digite o nome da estação");
-        e1.setNome(sc.nextLine());
+        do {
+            System.out.println("Digite o nome da estação");
+        }while (!e1.setNome(sc.nextLine()));
 
         do {
             System.out.println("Digite o código da estação");
@@ -47,7 +52,7 @@ public class Main {
         e1.setCodigo(codEstacao);
 
         e1.getWeatherData().definirMedicao();
-        dataCenter.addEstacoes(e1);
+        dataCenter.addEstacoes(e1.getCodigo(),e1);
         mapEstacoes.put(e1.getCodigo(),e1);
 
     }
@@ -66,16 +71,30 @@ public class Main {
                 currentConditionalsDisplay.atualizar(mapEstacoes.get(opcao));
 
                 for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 2; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++) {
+                    System.out.println("=============================");
                     if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("StatisticsDisplay")) {
+                        System.out.println("DISPLAY DE ESTATÍSTICAS");
                         System.out.println(((StatisticsDisplay) mapEstacoes.get(opcao).getDisplay(i)).exibirDados() + "\n");
                     } else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")) {
                         System.out.println("MEDIA GERAL");
                         System.out.println(((CurrentConditionalsDisplay) mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
                     }
                 }
-                TimeUnit.SECONDS.sleep(5);
+                TimeUnit.SECONDS.sleep(1);
             }
+    }
+    public static void historico(){
+        int opcao;
+        do {
+            System.out.println("Digite o código da estação que deseja exibir o histórico de registros");
+            opcao = sc.nextInt();
+        }while (dataCenter.getEstacao(opcao) == null);
 
+        for (Display statisticsDisplay : dataCenter.getEstacao(opcao).getDisplays()){
+            if (statisticsDisplay.getClass().getName().equals("StatisticsDisplay")){
+                System.out.println("===================\n"+ ((StatisticsDisplay)statisticsDisplay).exibirDados());
+            }
+        }
 
 
     }

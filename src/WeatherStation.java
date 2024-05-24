@@ -26,8 +26,12 @@ public class WeatherStation {
         return this.nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public boolean setNome(String nome) {
+        if (nome.length() > 0) {
+            this.nome = nome;
+            return true;
+        }
+        return false;
     }
 
     public WeatherData getWeatherData() {
