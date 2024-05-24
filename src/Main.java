@@ -34,12 +34,17 @@ public class Main {
     public static void cadastrarEstacao(){
         WeatherStation e1 = new WeatherStation();
 
+        int codEstacao;
+
         sc.nextLine();
         System.out.println("Digite o nome da estação");
         e1.setNome(sc.nextLine());
 
-        System.out.println("Digite o código da estação");
-        e1.setCodigo(sc.nextInt());
+        do {
+            System.out.println("Digite o código da estação");
+            codEstacao = sc.nextInt();
+        }while (mapEstacoes.get(codEstacao) != null);
+        e1.setCodigo(codEstacao);
 
         e1.getWeatherData().definirMedicao();
         dataCenter.addEstacoes(e1);
@@ -48,32 +53,30 @@ public class Main {
     }
     public static void telaExibicaoInformacoesTotais() throws InterruptedException {
         int opcao;
-        System.out.println("Digite o código da estação que deseja exibir as informações");
-        opcao = sc.nextInt();
+        do {
+            System.out.println("Digite o código da estação que deseja exibir as informações");
+            opcao = sc.nextInt();
+        }while (mapEstacoes.get(opcao) == null);
 
+            for(int j = 0; j < 12;j++) {
+                StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
+                CurrentConditionalsDisplay currentConditionalsDisplay = new CurrentConditionalsDisplay();
 
-        while (true){
-            StatisticsDisplay statisticsDisplay = new StatisticsDisplay();
-            CurrentConditionalsDisplay currentConditionalsDisplay = new CurrentConditionalsDisplay();
+                statisticsDisplay.atualizar(mapEstacoes.get(opcao));
+                currentConditionalsDisplay.atualizar(mapEstacoes.get(opcao));
 
-            statisticsDisplay.atualizar(mapEstacoes.get(opcao));
-            currentConditionalsDisplay.atualizar(mapEstacoes.get(opcao));
-
-            TimeUnit.SECONDS.sleep(1);
-
-            for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 2; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++){
-                if(mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("StatisticsDisplay")){
-                    System.out.println(((StatisticsDisplay)mapEstacoes.get(opcao).getDisplay(i)).exibirDados()+ "\n");
+                for (int i = mapEstacoes.get(opcao).getTamanhoListaTelas() - 2; i < mapEstacoes.get(opcao).getTamanhoListaTelas(); i++) {
+                    if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("StatisticsDisplay")) {
+                        System.out.println(((StatisticsDisplay) mapEstacoes.get(opcao).getDisplay(i)).exibirDados() + "\n");
+                    } else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")) {
+                        System.out.println("MEDIA GERAL");
+                        System.out.println(((CurrentConditionalsDisplay) mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
+                    }
                 }
-                else if (mapEstacoes.get(opcao).getDisplay(i).getClass().getName().equals("CurrentConditionalsDisplay")){
-                    System.out.println("MEDIA GERAL");
-                    System.out.println(((CurrentConditionalsDisplay)mapEstacoes.get(opcao).getDisplay(i)).getInformacoesAdicionais() + "\n");
-                }
+                TimeUnit.SECONDS.sleep(5);
             }
 
 
-
-        }
 
     }
 }
